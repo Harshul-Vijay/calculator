@@ -1,4 +1,4 @@
-# Ionic PWA Toolkit
+<!-- # Ionic PWA Toolkit
 
 The PWA Toolkit is a starting point for building Progressive Web Apps using Ionic and Stencil.
 This combination of tools gives you the ability to build a fast, efficient PWA out of the box.
@@ -25,7 +25,6 @@ To start building, clone this repo to a new directory:
 ```bash
 npm init stencil ionic-pwa
 ```
-
 
 ## Production
 
@@ -92,3 +91,4 @@ npm run test.watch
 We recommend using https://www.webpagetest.org/easy with the `Run Lighthouse Audit` option turned on.
 This will give you an in depth look into your app's load performance on the average device connected to the average network.
 For more info on how to use webpagetest check out [this article](https://zoompf.com/blog/2015/07/the-seo-experts-guide-to-web-performance-using-webpagetest-2)
+ -->
