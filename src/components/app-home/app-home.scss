@@ -1,0 +1,58 @@
+:root {
+  background: var(--ion-color-primary);
+}
+
+@mixin button {
+  ion-button {
+    font-size: 1.5em;
+    height: 12.5vh;
+    min-width: 100px;
+  }
+}
+
+.expr {
+  height: 40vh;
+}
+
+.controls {
+  ion-card-content {
+    display: inline-flex;
+    margin: 1px;
+    padding: 0px;
+    width: 100vw;
+
+    .numbers {
+      @include button;
+      display: grid;
+      gap: 10px 15px;
+      grid-template-columns: repeat(3, 1fr);
+      padding: 6px;
+    }
+
+    .functions {
+      @include button;
+      background: var(--ion-color-tertiary);
+      display: grid;
+      gap: 10px 15px;
+      grid-template-columns: repeat(5, 1fr);
+      padding: 6px;
+      width: 70vw;
+    }
+
+    @media (max-width: 799px) {
+      .functions {
+        display: none;
+      }
+  
+      .numbers {
+        width: 100vw;
+      }
+    }
+
+    @media (min-width: 800px) {
+      .numbers {
+        width: 30vw;
+      }
+    }
+  }
+}

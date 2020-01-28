@@ -1,0 +1,26 @@
+{
+  "name": "calculator",
+  "private": true,
+  "version": "0.0.1",
+  "description": "calculator",
+  "license": "MIT",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "stencil build",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watch",
+    "generate": "stencil generate"
+  },
+  "dependencies": {
+    "@ionic/core": "^4.11.7",
+    "jest": "file:../calculatorasd/node_modules/jest"
+  },
+  "devDependencies": {
+    "@stencil/core": "^1.9.0-13",
+    "@stencil/sass": "^1.1.1",
+    "workbox-build": "4.3.1"
+  }
+}
