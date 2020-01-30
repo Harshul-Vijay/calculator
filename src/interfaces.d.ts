@@ -10,6 +10,7 @@ export interface MathConstants {
   PI: number;
   SQRT1_2: number;
   SQRT2: number;
+  INFINITY: number;
 }
 
 export interface MathFunctions {
@@ -22,7 +23,13 @@ export interface MathFunctions {
   cosec: (angle: string) => number;
 
   // Logarithmic function(s)
-  log: (number: number, base: string) => number;
+  ln: (number: number) => number;
+  log: (number: number) => number;
+  logtwo: (number: number) => number;
+  logten: (number: number) => number;
+
+  // Other function(s)
+  sqrt: (number: number) => number;
 }
 
 export interface Token {
