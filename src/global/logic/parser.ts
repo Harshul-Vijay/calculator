@@ -1,6 +1,6 @@
 import { Lexer } from "./lexer";
 import { Token } from "../../interfaces";
-import { Stack } from "./helpers";
+import { Stack, constants } from "./helpers";
 
 /**
  * Parses a given expression.
@@ -70,6 +70,17 @@ export class Parser {
         value: val
       });
     }
+
+    this.tokens.map((token: Token, index: number) => {
+      if (token.type === 'literal') {
+        if (!!constants[token.value.toUpperCase()]) {
+          this.tokens[index].type = 'number';
+          this.tokens[index].value = `${constants[token.value.toUpperCase()]}`;
+        } else {
+          throw new Error(`Undefined constant '${token.value}'`);
+        }
+      }
+    });
   }
 
   /**
