@@ -6,34 +6,40 @@ export class Evaluator {
 
   constructor(expr: string) {
     const postfix = new Postfix(expr).postfix;
-    const stack = new Stack();
+    const stack = new Stack<number>();
     postfix.map(token => {
-      if (typeof token === 'number') {
-        stack.push(token);
-      } else if (typeof token === 'string' && token.length === 1) {
-        const op2 = stack.pop();
-        const op1 = stack.pop();
+      if (token.type === 'number') {
+        stack.push(+token.value);
+      } else if (token.type === 'operator') {
+        const op2: number = stack.pop();
+        const op1: number = stack.pop();
         let res = 0;
-        if (token === '+') {
+        if (token.value === '+') {
           res = op1 + op2;
-        } else if (token === '-') {
+        } else if (token.value === '-') {
           res = op1 - op2;
-        } else if (token === '*') {
+        } else if (token.value === '*') {
           res = op1 * op2;
-        } else if (token === '/') {
+        } else if (token.value === '/') {
+          if (op2 === 0) {
+            throw new Error(`Cannot divide by zero`);
+          }
           res = op1 / op2;
-        } else if (token === '^') {
+        } else if (token.value === '^') {
           res = Math.pow(op1, op2);
+        } else if (token.value === '%') {
+          res = op1 % op2;
+        } else {
+          throw new Error(`Unknown operator '${token.value}'`);
         }
         stack.push(res);
-      } else if (typeof token === 'string' && token.length > 1 &&
-        token !== "NaN") {
-        if (!!functions[token]) {
+      } else if (token.type === 'function') {
+        if (!!functions[token.value]) {
           const op1 = stack.pop();
-          const res = functions[token](op1 + ``);
+          const res = functions[token.value](`${op1}`);
           stack.push(res);
         } else {
-          throw new Error(`Undefined function '${token}'`);
+          throw new Error(`Undefined function '${token.value}'`);
         }
       }
     });
