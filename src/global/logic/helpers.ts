@@ -9,7 +9,7 @@ const convertToRadians = (angle: string) => {
   } else {
     multiplier /= Math.PI;
   }
-  return ((+angle.replace(/[A-z]/gi, '') * multiplier));
+  return ((+angle.replace(/[A-z]/gi, '')) * multiplier);
 };
 
 export const associativity = {
@@ -29,6 +29,7 @@ export const constants: MathConstants = {
   PI: Math.PI,
   SQRT1_2: Math.SQRT1_2,
   SQRT2: Math.SQRT2,
+  INFINITY: Infinity
 };
 
 export const functions: MathFunctions = {
@@ -39,7 +40,7 @@ export const functions: MathFunctions = {
     return Math.cos(convertToRadians(angle));
   },
   tan: (angle: string) => {
-    return Math.cos(convertToRadians(angle));
+    return Math.tan(convertToRadians(angle));
   },
   cot: (angle: string) => {
     return (1 / (functions.tan(angle)));
@@ -50,7 +51,7 @@ export const functions: MathFunctions = {
   cosec: (angle: string) => {
     return (1 / (functions.sin(angle)));
   },
-  log: (number: number, base: string = 'e') => {
+  /* log: (number: number, base: string = 'e') => {
     if (base === 'e') {
       return Math.log(number);
     } else if (base === '2') {
@@ -58,8 +59,32 @@ export const functions: MathFunctions = {
     } else if (base === '10') {
       return Math.log10(number);
     }
+  }, */
+  ln: (number: number) => {
+    return Math.log(number);
   },
+  log: (number: number) => {
+    return Math.log(number);
+  },
+  logtwo: (number: number) => {
+    return Math.log2(number);
+  },
+  logten: (number: number) => {
+    return Math.log10(number);
+  },
+  sqrt: (number: number) => {
+    return Math.sqrt(number);
+  }
 };
+
+export const operators = [
+  '^',
+  '+', 
+  '-',
+  '/',
+  '*',
+  '%',
+];
 
 export const precedence = {
   '^': 4,
@@ -67,6 +92,7 @@ export const precedence = {
   '*': 3,
   '+': 2,
   '-': 2,
+  '%': 1,
 };
 
 export class Stack<T = any> {
