@@ -1,4 +1,4 @@
-import { functions } from "./helpers";
+import { functions, operators } from "./helpers";
 import { Token, TokenType } from "../../interfaces";
 
 /**
@@ -6,8 +6,6 @@ import { Token, TokenType } from "../../interfaces";
  * 
  * @class Lexer
  * @param {string} expr The expression to break into tokens.
- * 
- * @todo Introduce support for variables and constants
  */
 export class Lexer {
   protected _tokens: Array<string> = [];
@@ -38,7 +36,7 @@ export class Lexer {
         });
       });
     } else {
-      throw new Error('Mismatched parenthesis.');
+      throw new Error(`Parenthesis don't match.`);
     }
   }
 
@@ -55,7 +53,8 @@ export class Lexer {
       type = 'function';
     } else if (token.match(/[.0-9]/gi)) {
       type = 'number';
-    } else if (token.match(/[\^+-/*]/gi)) {
+    } else if (operators.find(op => op === token ? true : false)
+    /* token.match(/[\^+-/*%]/) */) {
       type = 'operator';
     } else if (token.match(/[A-z]/gi)) {
       type = 'literal';
